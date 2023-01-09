@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block header %}
-<h1>{% block title %}New record{% endblock %}</h1>
+{% block title %}<h1>New record </h1> {% endblock %}
   {% if g.user %}
     <a class="action" href="{{ url_for('categories.create') }}">New Category</a>
   {% endif %}
@@ -25,7 +25,8 @@
   {% endif %}
 {% endfor %}
 </table>
-
+<div class="create_page_column">
+  <p>Please enter the category id, money value and currency id</p>
   <form method="post">
     <label for="category_id">Category</label>
     <input name="category_id" id="category_id" value="{{ request.form['category_id'] }}" required>
@@ -35,7 +36,7 @@
     <input name="currency_id" id="currency_id" value="{{ request.form['currency_id'] }}" required>
     <input type="submit" value="Save">
   </form>
-  
+  </div>
   <table>
     <tr>
       <th>ID</th>

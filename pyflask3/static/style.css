@@ -12,7 +12,10 @@ body {
     align-items: center;
     
 }
-
+p{
+    padding:2%;
+    text-align: center;
+}
 h1 { 
     font-family: 'Roboto Slab', serif;
     color: #7e0a77; 
@@ -46,6 +49,10 @@ nav {
 .create_page{
     display: flex; 
     justify-content: space-between;
+}
+.create_page_column{
+    display: flex;
+    flex-direction: column;
 }
 nav h1 { 
     flex: auto; 
@@ -116,6 +123,7 @@ nav ul li a, nav ul li span, header .action {
 .post .about { 
     color: slategray; 
     font-style: italic; 
+    margin-left: 2%;
 }
 
 .post .body { 

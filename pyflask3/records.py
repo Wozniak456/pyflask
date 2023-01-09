@@ -25,6 +25,11 @@ def index():
 @bp.route('/<user_id>')
 def get_records_by_id(user_id):
     db = get_db()
+    user = db.execute(
+        'select * from users where id = ?',
+        (user_id,)
+    ).fetchall()
+
     records = db.execute(
         'SELECT b.id, b.user_id, b.username, b.name, b.cost, cu.name as cu_name, b.date '
         ' FROM ( SELECT a.id, a.user_id, a.username, c.name, a.cost, a.currency_id, a.date' 
@@ -35,10 +40,11 @@ def get_records_by_id(user_id):
         (user_id,)
     ).fetchall()
 
-    if len(records) == 0:
+    if len(user) == 0:
         abort(404, f"User id {user_id} doesn't exist.")
 
     return render_template('records/index.html', records=records)
+    
 
 @bp.route('/create', methods=('GET', 'POST'))
 @login_required
@@ -83,13 +89,6 @@ def create():
 
 def get_post(id, check_author=True):
     record = get_db().execute(
-        # 'SELECT b.id, b.user_id, b.username, b.name, b.cost, cu.name, b.date FROM'
-        # ' (SELECT a.id, a.user_id, a.username, c.name, a.cost, a.currency_id, a.date from'
-        # ' (SELECT r.id, r.user_id, u.username, r.category_id, r.cost, r.currency_id, r.date FROM records r JOIN users u '
-        # ' ON r.user_id = u.id) as a JOIN categories c '
-        # ' ON a.category_id = c.id) as b JOIN currencies cu '
-        # ' ON b.currency_id=cu.id '
-        # ' WHERE b.id = ?',
         'select * from records where id = ?',
         (id,)
     ).fetchone()

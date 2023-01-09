@@ -30,3 +30,20 @@ CREATE TABLE records (
   FOREIGN KEY (currency_id) REFERENCES currencies (id),
   FOREIGN KEY (category_id) REFERENCES categories (id)
 );
+
+INSERT INTO currencies(name)
+VALUES 
+('UAH'),
+('USD'),
+('EUR'),
+('CHF');
+
+INSERT INTO categories(name)
+VALUES 
+('Food'),
+('Clothes'),
+('Drugs'),
+('Vacation');
+
+
+
