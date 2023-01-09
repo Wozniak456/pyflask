@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Records{% endblock %}</h1>
+  {% if g.user %}
+    <a class="action" href="{{ url_for('records.create') }}">New</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% for record in records %}
+    <article class="post">
+      <header>
+        <div>
+          <h2 class="body">{{ record['cost'] }} {{ record['cu_name'] }} for {{ record['name'] }}</h2>
+          <div class="about">by {{ record['username'] }} on {{ record['date'] }}</div>
+          <hr>
+        </div>
+        {% if g.user['id'] == record['user_id'] %}
+          <a class="action" href="{{ url_for('records.update', id=record['id']) }}">Edit</a>
+        {% endif %}
+      </header>
+      
+    </article>
+    {% if not loop.last %}
+      
+    {% endif %}
+  {% endfor %}
+{% endblock %}
+
+
