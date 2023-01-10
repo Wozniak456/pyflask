@@ -23,6 +23,7 @@ def index():
     return render_template('records/index.html', records=records)
 
 @bp.route('/<user_id>')
+@login_required
 def get_records_by_id(user_id):
     db = get_db()
     user = db.execute(
