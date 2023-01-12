@@ -9,6 +9,7 @@ from pyflask3.db import get_db
 bp = Blueprint('categories', __name__)
 
 @bp.route('/categories')
+@login_required
 def index():
     db = get_db()
     categories = db.execute(
@@ -18,6 +19,7 @@ def index():
     return render_template('categories/category.html', categories=categories)
 
 @bp.route('/categories/<category>')
+@login_required
 def get_records_in_category(category):
     db = get_db()
     records = db.execute(

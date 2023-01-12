@@ -1,0 +1,4 @@
+include pyflask3/schema.sql
+graft pyflask3/static
+graft pyflask3/templates
+global-exclude *.pyc
