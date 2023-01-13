@@ -45,5 +45,17 @@ VALUES
 ('Drugs'),
 ('Vacation');
 
+INSERT INTO users(username, password)
+VALUES
+('admin', 'admin'),
+('sofiia', 'is-01');
+
+INSERT INTO records(user_id, currency_id, category_id, cost)
+VALUES
+(1, 1, 1, 300),
+(1, 2, 2, 400),
+(2, 3, 3, 500),
+(2, 1, 1, 2000);
+
 
 
